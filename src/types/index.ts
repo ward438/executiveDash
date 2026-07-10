@@ -1,3 +1,5 @@
+export type { EChartsOption } from 'echarts';
+
 export interface Account {
   account_name: string;
   account_id: string;
