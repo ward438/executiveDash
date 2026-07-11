@@ -5,6 +5,7 @@ import { execData } from "./chartData/execChartData";
 
 export default function ExecDonut() {
     return (
-        <Chart type="doughnut" data={execData} />
+        // <Chart type="doughnut" data={execData} />
+        <>toDo</>
     );
 }
