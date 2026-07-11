@@ -1,5 +1,5 @@
 import { Chart } from "react-chartjs-2";
-import { trendChartConfig } from "../configs/trendChartConfig";
+import { trendChartConfig } from "./config/trendChartConfig";
 
  
 export const TrendChart = () => {
