@@ -3,12 +3,14 @@ import { TrendDash } from '../dashboards/trendDash';
 import { CostBreakdowns } from '../dashboards/costBreakdowns';
 import { BudgetAlerts } from '../dashboards/budgetAlerts';
 import { Insights } from '../dashboards/insights';
+import { LogIn } from '../dashboards/logIn';
 
 const navItems = [
     { label: 'Trend Dashboard', component: TrendDash },
     { label: 'Cost Breakdowns', component: CostBreakdowns },
     { label: 'Budget Alerts', component: BudgetAlerts },
     { label: 'Insights', component: Insights },
+    { label: 'Log In', component: LogIn },
 ];
 
 export const MainNavMenu = () => {
@@ -38,6 +40,9 @@ export const MainNavMenu = () => {
                     </button>
                 ))}
             </div>
+            {/* <div className="fixed bottom-0 right-0">
+                <button>log inkljhkljhjkljkljkl</button>
+            </div> */}
             <div className="flex-1 min-w-0">
                 <ActiveComponent />
             </div>
