@@ -18,10 +18,10 @@ export const MainNavMenu = () => {
 
     return (
         <div className="flex w-full h-full">
-            <div className={`flex flex-col h-screen border-r-2 border-gray-200 pt-4 gap-2 px-4 transition-all ${isOpen ? 'w-56' : 'w-14'}`}>
+            <div className={`flex flex-col h-screen border-r-2 border-gray-200 pt-4 gap-2 px-4 transition-all ${isOpen ? 'w-56' : 'w-14'} bg-purple-100`}>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="self-start px-2 py-1 text-sm border rounded cursor-pointer mb-4"
+                    className="self-start px-2 py-1 text-sm border rounded cursor-pointer mb-4 bg-yellow-100 text-white"
                     title={isOpen ? 'Close menu' : 'Open menu'}
                 >
                     {isOpen ? '✕ Close' : '☰'}
@@ -30,7 +30,9 @@ export const MainNavMenu = () => {
                     <button
                         key={label}
                         onClick={() => setActiveLabel(label)}
-                        className={`text-left px-3 py-2 rounded cursor-pointer ${activeLabel === label ? 'bg-blue-100 text-blue-700 font-semibold' : 'text-gray-600 hover:bg-gray-100'}`}
+                        className={`text-left px-3 py-2 rounded cursor-pointer text-creamWhite-100 hover:bg-yellow-100 transition delay-10 duration-300 ease-in-out
+                             hover:scale-110`}
+                        style={{  }}
                     >
                         {label}
                     </button>
