@@ -10,7 +10,6 @@ const navItems = [
     { label: 'Cost Breakdowns', component: CostBreakdowns },
     { label: 'Budget Alerts', component: BudgetAlerts },
     { label: 'Insights', component: Insights },
-    // { label: 'Log Out', component: LogOut },
 ];
 
 export const MainNavMenu = () => {
@@ -37,15 +36,12 @@ export const MainNavMenu = () => {
                         {label}
                     </button>
                 ))}
-            </div>
-            {/* <div className="fixed bottom-0 right-0">
-                <button>log inkljhkljhjkljkljkl</button>
-            </div> */}
+            </div>            
             <div className="flex-1 min-w-0">
                 <ActiveComponent />
                 <div className="fixed bottom-0 left-0">
                     <button 
-                        className={`bg-yellow-100 text-creamWhite-100 px-4 py-2 rounded-md cursor-pointer p-3 m-3 ${isOpen ? 'w-45' : 'w-8'}`}
+                        className={`self-start px-2 py-1 text-sm border rounded cursor-pointer mb-4 bg-yellow-100 text-white`}
                         onClick={() => setActiveLabel('Log Out')}>
                             <LogOut isOpen={isOpen} />
                     </button>
