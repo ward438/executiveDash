@@ -12,13 +12,21 @@ const navItems = [
 ];
 
 export const MainNavMenu = () => {
+    const [isOpen, setIsOpen] = useState(true);
     const [activeLabel, setActiveLabel] = useState('Trend Dashboard');
     const ActiveComponent = navItems.find((item) => item.label === activeLabel)!.component;
 
     return (
         <div className="flex w-full h-full">
-            <div className="flex flex-col w-1/4 h-screen border-r-2 border-gray-200 pt-10 gap-2 px-4">
-                {navItems.map(({ label }) => (
+            <div className={`flex flex-col h-screen border-r-2 border-gray-200 pt-4 gap-2 px-4 transition-all ${isOpen ? 'w-56' : 'w-14'}`}>
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="self-start px-2 py-1 text-sm border rounded cursor-pointer mb-4"
+                    title={isOpen ? 'Close menu' : 'Open menu'}
+                >
+                    {isOpen ? '✕ Close' : '☰'}
+                </button>
+                {isOpen && navItems.map(({ label }) => (
                     <button
                         key={label}
                         onClick={() => setActiveLabel(label)}
