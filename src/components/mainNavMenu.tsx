@@ -33,9 +33,7 @@ export const MainNavMenu = () => {
                         key={label}
                         onClick={() => setActiveLabel(label)}
                         className={`text-left px-3 py-2 rounded cursor-pointer text-creamWhite-100 hover:bg-yellow-100 transition delay-10 duration-300 ease-in-out
-                             hover:scale-110`}
-                        style={{  }}
-                    >
+                             hover:scale-110`}>
                         {label}
                     </button>
                 ))}
@@ -46,7 +44,11 @@ export const MainNavMenu = () => {
             <div className="flex-1 min-w-0">
                 <ActiveComponent />
                 <div className="fixed bottom-0 left-0">
-                    <button className="bg-yellow-100 text-white px-4 py-2 rounded-md cursor-pointer p-3 m-3">LogOut</button>
+                    <button 
+                        className={`bg-yellow-100 text-creamWhite-100 px-4 py-2 rounded-md cursor-pointer p-3 m-3 ${isOpen ? 'w-45' : 'w-8'}`}
+                        onClick={() => setActiveLabel('Log Out')}>
+                            <LogOut isOpen={isOpen} />
+                    </button>
                     
                 </div>
         </div>
