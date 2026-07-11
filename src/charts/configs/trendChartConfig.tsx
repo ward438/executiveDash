@@ -1,8 +1,4 @@
-import { trendChartData } from "../chartData/trendChartData";
-
-
-
-
+import { trendChartData } from "../trendCharts/chartData/trendChartData";
 
 export const trendChartConfig = {
     type: 'bar',

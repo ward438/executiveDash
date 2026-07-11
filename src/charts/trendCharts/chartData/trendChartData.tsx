@@ -1,6 +1,4 @@
 
-
-
 export const trendChartData = {
     labels: ["Cost", "Budget", "Actual"],
     datasets: [{
