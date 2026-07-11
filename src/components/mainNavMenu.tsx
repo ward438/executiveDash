@@ -3,14 +3,14 @@ import { TrendDash } from '../dashboards/trendDash';
 import { CostBreakdowns } from '../dashboards/costBreakdowns';
 import { BudgetAlerts } from '../dashboards/budgetAlerts';
 import { Insights } from '../dashboards/insights';
-import { LogIn } from '../dashboards/logIn';
+import { LogOut } from '../dashboards/logOut';
 
 const navItems = [
     { label: 'Trend Dashboard', component: TrendDash },
     { label: 'Cost Breakdowns', component: CostBreakdowns },
     { label: 'Budget Alerts', component: BudgetAlerts },
     { label: 'Insights', component: Insights },
-    { label: 'Log In', component: LogIn },
+    // { label: 'Log Out', component: LogOut },
 ];
 
 export const MainNavMenu = () => {
@@ -45,7 +45,11 @@ export const MainNavMenu = () => {
             </div> */}
             <div className="flex-1 min-w-0">
                 <ActiveComponent />
-            </div>
+                <div className="fixed bottom-0 left-0">
+                    <button className="bg-yellow-100 text-white px-4 py-2 rounded-md cursor-pointer p-3 m-3">LogOut</button>
+                    
+                </div>
         </div>
-    );
-}
+    </div>
+  );
+};
