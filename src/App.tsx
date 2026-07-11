@@ -1,6 +1,4 @@
 import { Chart as ChartJS, ArcElement, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
-import HomeTable from './components/homeTable';
-import ExecDonut from './charts/execDonut';
 import { TrendChart } from './charts/trendCharts/trendChart';
 
 ChartJS.register(ArcElement, BarElement, CategoryScale, LinearScale, Tooltip, Legend);
