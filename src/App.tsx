@@ -9,7 +9,6 @@ export default function App() {
     <div className="grid place-items-center">
       <div className="flex items-center h-screen">
         <TrendChart />
-
       </div>
     </div>
   );
