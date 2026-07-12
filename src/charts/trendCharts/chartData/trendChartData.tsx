@@ -40,6 +40,8 @@ export const overBudgetItems = newValidRows as {
     region: string; owner: string; cost: number; budget: number;
 }[];
 
+export const overBudgetOwners = [...new Set(overBudgetItems.map((item) => item.owner))];
+
 export const allItems = (costsData as any[]).map((data) => ({
     date: String(data.date),
     account_name: String(data.account_name),

@@ -12,10 +12,27 @@ const totals = (summaryData as any).totals;
 const accounts: any[] = (summaryData as any).accounts;
 
 const overBudgetCount = overBudgetItems.length;
-const overBudgetOwners = [...new Set(overBudgetItems.map(i => i.owner))];
-const worstAccount = [...accounts].sort((a, b) => b.variance - a.variance)[0];
-const highRiskAccount = [...accounts].sort((a, b) => b.utilization_pct - a.utilization_pct)[0];
 
+// unique list of owners with at least one over-budget item
+const allOwners = overBudgetItems.map((item) => item.owner);
+const overBudgetOwners = allOwners.filter((owner, index) => allOwners.indexOf(owner) === index);
+
+// account furthest over budget (biggest variance)
+let worstAccount = accounts[0];
+for (const acct of accounts) {
+    if (acct.variance > worstAccount.variance) {
+        worstAccount = acct;
+    }
+}
+
+// account that has used the highest % of its budget
+let highRiskAccount = accounts[0];
+for (const acct of accounts) {
+    if (acct.utilization_pct > highRiskAccount.utilization_pct) {
+        highRiskAccount = acct;
+    }
+}
+console.log(worstAccount);
 const KPICard = ({ label, value, sub, red }: { label: string; value: string; sub?: string; red?: boolean }) => (
     <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col gap-1 flex-1 min-w-0">
         <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">{label}</span>
