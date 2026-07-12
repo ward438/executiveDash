@@ -90,11 +90,21 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                         </div>
                         <div className="grid grid-flow-col grid-rows-3 gap-4">
                         <div className="row-span-3 ... space-y-5">
-                            <p className="text-sm text-white"><span>Owner: </span><span className="border border-gray-300 p-1 rounded">{ selectedRow.owner}</span></p>
-                            <p className="text-sm text-white"><span>Service: </span><span className="border border-gray-300 p-1 rounded">{selectedRow.service}</span></p>
-                            <p className="text-sm text-white"><span>Region: </span><span className="border border-gray-300 p-1 rounded">{selectedRow.region}</span></p>
-                            <p className="text-sm text-white"><span>Cost: </span><span className="border border-gray-300 p-1 rounded"   >{selectedRow.cost}</span></p>
-                            <p className="text-sm text-white"><span>Budget: </span><span className="border border-gray-300 p-1 rounded">{selectedRow.budget}</span></p>
+                            <p className="text-sm text-white"><span>Owner: </span>
+                                <span className="border border-gray-300 p-1 rounded">{ selectedRow.owner}</span>
+                            </p>
+                            <p className="text-sm text-white"><span>Service: </span>
+                                <span className="border border-gray-300 p-1 rounded">{selectedRow.service}</span>
+                            </p>
+                            <p className="text-sm text-white"><span>Region: </span>
+                                <span className="border border-gray-300 p-1 rounded">{selectedRow.region}</span>
+                            </p>
+                            <p className="text-sm text-white"><span>Cost: </span>
+                                <span className="border border-gray-300 p-1 rounded"   >{selectedRow.cost}</span>
+                            </p>
+                            <p className="text-sm text-white"><span>Budget: </span>
+                                <span className="border border-gray-300 p-1 rounded">{selectedRow.budget}</span>
+                            </p>
                         </div>
                         <div className="col-span-2 ...">02</div>
                         <div className="col-span-2 row-span-2 ...">03</div>
