@@ -1,19 +1,6 @@
 import { trendChartData, totalsByMonth } from "../chartData/trendChartData";
 
-export const trendChartConfig = {
-    // type: 'bar',
-    // options: {
-    //     responsive: true,
-    //     maintainAspectRatio: false,
-    //     scales: {
-    //         // x:{stacked: true},
-    //         y: {
-    //             stacked: false,
-    //             beginAtZero: true
-    //         }
-    //     }
-    // },
-    // data: trendChartData,
+export const trendChartConfig = {  
     type: 'bar',
     options: {
         responsive: true,
