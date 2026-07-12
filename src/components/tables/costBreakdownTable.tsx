@@ -2,13 +2,14 @@ import { useState } from "react";
 import { BudgetAlertModal } from "../modals/BudgetAlertModal";
 import { filterTableRows, rowStyler } from "./tableUtils";
 
-export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePageChange, title, caption }: {
+export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePageChange, title, caption, onSave }: {
     currentItems: any[];
     page: number;
     totalPages: number;
     handlePageChange: (page: number) => void;
     title?: string;
     caption?: string;
+    onSave?: (alert: any) => void;
 }) => {
     const [search, setSearch] = useState("");
     const [selectedRow, setSelectedRow] = useState<any>(null);
@@ -78,7 +79,7 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                 >&#8250;</button>
             </div>
             {isModalOpen && selectedRow && (
-                <BudgetAlertModal row={selectedRow} onClose={() => setIsModalOpen(false)} />
+                <BudgetAlertModal row={selectedRow} onClose={() => setIsModalOpen(false)} onSave={onSave} />
             )}
         </>
     );

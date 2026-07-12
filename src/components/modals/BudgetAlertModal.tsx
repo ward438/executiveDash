@@ -3,9 +3,10 @@ import { useState } from "react";
 interface BudgetAlertModalProps {
     row: any;
     onClose: () => void;
+    onSave?: (alert: any) => void;
 }
 
-export const BudgetAlertModal = ({ row, onClose }: BudgetAlertModalProps) => {
+export const BudgetAlertModal = ({ row, onClose, onSave }: BudgetAlertModalProps) => {
     const [threshold, setThreshold] = useState<number | "">("");
     const [description, setDescription] = useState("");
     const [submittedAlert, setSubmittedAlert] = useState<{ threshold: number | ""; description: string } | null>(null);
@@ -76,7 +77,11 @@ export const BudgetAlertModal = ({ row, onClose }: BudgetAlertModalProps) => {
                 <div className="flex justify-end gap-2">
                     <button
                         className="px-3 py-1.5 border bg-warning-primary text-white rounded text-sm cursor-pointer hover:bg-warning-secondary/80 disabled:opacity-40 disabled:cursor-not-allowed"
-                        onClick={() => setSubmittedAlert({ threshold, description })}
+                        onClick={() => {
+                            const alert = { ...row, threshold, description };
+                            setSubmittedAlert({ threshold, description });
+                            onSave?.(alert);
+                        }}
                         disabled={!alertChanged}
                     >
                         Create Alert

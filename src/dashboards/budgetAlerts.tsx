@@ -1,28 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TrendDropDown } from "../charts/trendCharts/components/trendDropDown";
 import type { DropDownItem } from "../charts/trendCharts/components/trendDropDown";
 import { underBudgetItems } from "../charts/trendCharts/chartData/trendChartData";
 import { CostBreakdownsTable } from "../components/tables/costBreakdownTable";
+import { alternatingRowStyle } from "../components/tables/tableUtils";
 
 export const BudgetAlerts = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedAccount, setSelectedAccount] = useState<DropDownItem | null>(null);
     const [showAll, setShowAll] = useState(true);
     const [page, setPage] = useState(1);
+    const [createdAlerts, setCreatedAlerts] = useState<any[]>(() => {
+        try {
+            return JSON.parse(localStorage.getItem("createdAlerts") ?? "[]");
+        } catch {
+            return [];
+        }
+    });
+
     const itemsPerPage = 20;
     const totalPages = Math.ceil(underBudgetItems.length / itemsPerPage);
     const currentItems = underBudgetItems.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+
+    useEffect(() => {
+        localStorage.setItem("createdAlerts", JSON.stringify(createdAlerts));
+    }, [createdAlerts]);
 
     const handleSelectAccount = (account: DropDownItem | null) => {
         setSelectedAccount(account);
         setShowAll(false);
     };
 
+    const handleSaveAlert = (alert: any) => {
+        setCreatedAlerts((prev) => [...prev, alert]);
+    };
+
     return (
     <>
-        <div className="w-full h-full p-8">
+        <div className="w-full h-full p-8 overflow-y-auto">
             <h1 className="text-2xl font-bold text-center mb-5">Budget Alerts</h1>
-            <div className="flex flex-col border bg-gray-100 rounded-sm p-8 w-3/4 mx-auto">
+            <div className="flex flex-col border bg-gray-100 rounded-sm p-8 w-3/4 mx-auto gap-6">
                 <div className="flex flex-col items-center justify-center relative">
                     <TrendDropDown
                         isOpen={isOpen}
@@ -32,7 +49,6 @@ export const BudgetAlerts = () => {
                         items={underBudgetItems}
                         label="Under Budget Accounts"
                         onSelectAll={() => setShowAll(true)}
-                        
                     />
                 </div>
                 {showAll && (
@@ -41,6 +57,7 @@ export const BudgetAlerts = () => {
                         page={page}
                         totalPages={totalPages}
                         handlePageChange={setPage}
+                        onSave={handleSaveAlert}
                     />
                 )}
                 {!showAll && selectedAccount && (
@@ -49,37 +66,47 @@ export const BudgetAlerts = () => {
                         page={1}
                         totalPages={1}
                         handlePageChange={() => {}}
+                        onSave={handleSaveAlert}
                     />
                 )}
-                <div>Created Alerts</div>
-                <table>
-                <thead>
-                        <tr className="border bg-gray-100">
-                            <th className="px-4 py-2">Date</th>
-                            <th className="px-4 py-2">Account</th>
-                            <th className="px-4 py-2">Service</th>
-                            <th className="px-4 py-2">Region</th>
-                            <th className="px-4 py-2">Owner</th>
-                            <th className="px-4 py-2">Cost</th>
-                            <th className="px-4 py-2">Budget</th>
-                            <th className="px-4 py-2">Threshold</th>
-                            <th className="px-4 py-2">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* {filteredItems.map((row, index) => (
-                            <tr key={index} className={`cursor-pointer border ${rowStyler(row)}`} onClick={() => handleRowClick(row)}>
-                                <td className="px-4 py-2">{row.date}</td>
-                                <td className="px-4 py-2">{row.account_name}</td>
-                                <td className="px-4 py-2">{row.service}</td>
-                                <td className="px-4 py-2">{row.region}</td>
-                                <td className="px-4 py-2">{row.owner}</td>
-                                <td className="px-4 py-2">{row.cost}</td>
-                                <td className="px-4 py-2">{row.budget}</td>
-                            </tr>
-                        ))} */}
-                    </tbody>
-                </table>
+
+                {createdAlerts.length > 0 && (
+                    <div>
+                        <h2 className="text-lg font-semibold mb-2">Created Alerts</h2>
+                        <div className="max-h-48 overflow-y-auto">
+                        <table className="table-auto border w-full">
+                            <thead>
+                                <tr className="border bg-gray-200">
+                                    <th className="px-4 py-2">Date</th>
+                                    <th className="px-4 py-2">Account</th>
+                                    <th className="px-4 py-2">Service</th>
+                                    <th className="px-4 py-2">Region</th>
+                                    <th className="px-4 py-2">Owner</th>
+                                    <th className="px-4 py-2">Cost</th>
+                                    <th className="px-4 py-2">Budget</th>
+                                    <th className="px-4 py-2">Threshold</th>
+                                    <th className="px-4 py-2">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {createdAlerts.map((alert, index) => (
+                                    <tr key={index} className={`border text-sm ${alternatingRowStyle(index)}`}>
+                                        <td className="px-4 py-2">{alert.date}</td>
+                                        <td className="px-4 py-2">{alert.account_name}</td>
+                                        <td className="px-4 py-2">{alert.service}</td>
+                                        <td className="px-4 py-2">{alert.region}</td>
+                                        <td className="px-4 py-2">{alert.owner}</td>
+                                        <td className="px-4 py-2">${alert.cost?.toLocaleString()}</td>
+                                        <td className="px-4 py-2">${alert.budget?.toLocaleString()}</td>
+                                        <td className="px-4 py-2">{alert.threshold}</td>
+                                        <td className="px-4 py-2">{alert.description}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     </>

@@ -39,7 +39,7 @@ export const MainNavMenu = () => {
                     </button>
                 ))}
             </div>            
-            <div className="flex-1 min-w-0">
+            <div className="flex-1 min-w-0 h-screen overflow-hidden">
                 <ActiveComponent />
                 <div className={`fixed bottom-0 left-0 flex justify-center pb-4 ${isOpen ? 'w-55' : 'w-12.75'} `}>
                     <button 
