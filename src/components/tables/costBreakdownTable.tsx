@@ -82,10 +82,17 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                 >&#8250;</button>
             </div>
             {isModalOpen && (
-                <div className="fixed inset-0 bg-white opacity-100 flex items-center justify-center bottom-0">
-                    <div className="bg-white p-4 rounded-md w-1/2 h-1/2 border">
-                        {/* <h2 className="text-2xl font-bold">{selectedRow.account_name}</h2> */}
-                        <button className="cursor-pointer px-3 py-1 border rounded disabled:opacity-40 float-right" onClick={() => setIsModalOpen(false)}>Close</button>
+                <div className="fixed inset-0 bg-white opacity-100 flex items-center justify-center">
+                    <div className="bg-purple-100 p-4 rounded-md w-1/2 h-1/2 border">
+                        <button className="cursor-pointer px-3 py-1 border rounded disabled:opacity-40 float-right bg-warning-primary text-creamWhite-100" onClick={() => setIsModalOpen(false)}>Close</button>
+                        <div className="flex flex-col items-center justify-center">
+                            <h2 className="text-1xl text-white text-center">{selectedRow.account_name}</h2>
+                            <p className="text-sm text-white">{selectedRow.owner}</p>
+                            <p className="text-sm text-white">{selectedRow.service}</p>
+                            <p className="text-sm text-white">{selectedRow.region}</p>
+                            <p className="text-sm text-white">{selectedRow.cost}</p>
+                            <p className="text-sm text-white">{selectedRow.budget}</p>
+                        </div>
                     </div>
                 </div>
             )}
