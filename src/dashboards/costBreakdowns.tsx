@@ -1,6 +1,6 @@
 import { overBudgetItems } from "../charts/trendCharts/chartData/trendChartData";
 import { useState } from "react";
-import { CostBreakdownsTable } from "../charts/costBreakDownCharts/costBreakdownTable";
+import { CostBreakdownsTable } from "../components/tables/costBreakdownTable";
 
 export const CostBreakdowns = () => {
     const [page, setPage] = useState(1);
