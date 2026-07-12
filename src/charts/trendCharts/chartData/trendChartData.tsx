@@ -21,21 +21,15 @@ const dateFilteredJson = costsData.map((data: any) => data.cost > data.budget ? 
     region: `${data.region}`,
     owner: `${data.owner}`,
 } : null);
-console.log("dateFilteredJson:", dateFilteredJson);
 
-const validRows = costsData.filter(
-    (row) => row.cost !== null && row.cost > 0 && typeof row.date === 'string' && row.date.length === 10
-);
+// const validRows = costsData.filter(
+//     (row) => row.cost !== null && row.cost > 0 && typeof row.date === 'string' && row.date.length === 10
+// );
 
 const newValidRows = dateFilteredJson.filter(
     (row) => row != null
     
 );
-
-
-// console.log("newValidRows:", newValidRows);
-
-
 
 export const trendChartData = {
     labels: MONTHS,
