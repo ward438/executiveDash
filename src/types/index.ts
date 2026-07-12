@@ -34,3 +34,9 @@ export interface CostRecord {
 }
 
 export type DropDownItem = Omit<CostRecord, 'account_id'> & { account_id?: string };
+
+export interface DashState {
+  accounts: Account[];
+  totals: SummaryTotals;
+  costs: CostRecord[];
+}
