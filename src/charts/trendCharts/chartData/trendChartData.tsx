@@ -7,7 +7,6 @@ const MONTH_DATES = [...new Set(
 )].sort().slice(-6);
 const MONTH_LABELS: Record<string, string> = { '01': 'Jan', '02': 'Feb', '03': 'Mar', '04': 'Apr', '05': 'May', '06': 'Jun', '07': 'Jul', '08': 'Aug', '09': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dec' };
 const MONTHS = MONTH_DATES.map((yearMonth) => MONTH_LABELS[yearMonth.slice(5, 7)]);
-console.log('[trendChartData] MONTH_DATES:', MONTH_DATES, '| MONTHS:', MONTHS);
 
 export const dateFilteredJson = costsData.map((data: any) => data.cost > data.budget ? {
     date: `${data.date}`,
