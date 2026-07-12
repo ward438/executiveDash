@@ -7,7 +7,7 @@ import type { DropDownItem } from "../charts/trendCharts/components/trendDropDow
 import { CostBreakdownsTable } from "../components/tables/costBreakdownTable";
 import { BudgetAlerts } from "./budgetAlerts";
 import { Insights } from "./insights";
-import { KPICard } from "../components/KPICard";
+import { KPICard } from "../components/cards/KPICard";
 
 const totals = (summaryData as any).totals;
 const accounts: any[] = (summaryData as any).accounts;
@@ -128,7 +128,7 @@ export const MainDash = ({ onExpand }: { onExpand?: (label: string) => void }) =
                 </div>
             </div>
 
-            <div className="relative bg-white rounded-xl shadow-sm overflow-auto">
+            <div className="relative bg-white rounded-xl shadow-sm overflow-auto min-h-[200px]">
                 {onExpand && <ExpandButton onClick={() => onExpand('Insights')} />}
                 <Insights />
             </div>

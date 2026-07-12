@@ -1,4 +1,4 @@
-import { KPICard } from "../components/KPICard";
+import { KPICard } from "../components/cards/KPICard";
 
 export const Insights = () => {
     return (
