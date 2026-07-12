@@ -87,8 +87,11 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                         <button className="cursor-pointer px-3 py-1 border rounded disabled:opacity-40 float-right bg-warning-primary text-creamWhite-100" onClick={() => setIsModalOpen(false)}>Close</button>
                         <div className="flex flex-col items-center justify-center">
                             <h2 className="text-1xl text-white text-center">{selectedRow.account_name}</h2>
+                            <div className="col-span-2 ...">
+                            <span className="text-sm text-white">Create a new budget alert for this account</span>                            
                         </div>
-                        <div className="grid grid-flow-col grid-rows-3 gap-4">
+                        </div>
+                        <div className="grid grid-flow-col grid-rows-3 gap-4 mt-6">
                         <div className="row-span-3 grid grid-cols-[auto_1fr] gap-x-2 gap-y-3 items-center">
                             <span className="text-sm text-white">Owner:</span>
                             <span className="border border-gray-300 p-1 rounded text-black bg-white">{selectedRow.owner}</span>
@@ -105,7 +108,10 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                             <span className="text-sm text-white">Budget:</span>
                             <span className="border border-gray-300 p-1 rounded text-black bg-white">{selectedRow.budget}</span>
                         </div>
-                        <div className="col-span-2 ...">02</div>
+                        {/* <div className="col-span-2 ...">
+                            <span className="text-white">Create a new budget alert for this account</span>
+                            
+                        </div> */}
                         <div className="col-span-2 row-span-2 ...">03</div>
                         </div>
                     </div>
