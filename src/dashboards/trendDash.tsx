@@ -7,17 +7,13 @@ export const TrendDash = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedAccount, setSelectedAccount] = useState<{ account_name: string; cost: number; budget: number } | null>(null);
     return (
-        <div className="w-full h-full p-8">
+        <div className="w-full h-screen flex flex-col p-8">
             <div className="flex items-center justify-center">
-                <h1 className="text-2xl font-bold">
-                    <span className="text-center">
-                        Trend Dashboard
-                    </span>
-                </h1>
+                <h1 className="text-2xl font-bold">Trend Dashboard</h1>
             </div>
             <div className="-mt-12">
                 <TrendDropDown isOpen={isOpen} setIsOpen={setIsOpen} selectedAccount={selectedAccount} setSelectedAccount={setSelectedAccount}/>
-                {selectedAccount && (
+                {selectedAccount && selectedAccount.account_name !== "All Accounts" && (
                     <div className="flex justify-center">
                         <span className="text-sm">
                             <strong>{selectedAccount.account_name}</strong> | Cost: ${selectedAccount.cost} | Budget: ${selectedAccount.budget}
@@ -25,7 +21,17 @@ export const TrendDash = () => {
                     </div>
                 )}
             </div>
-            <TrendChart selectedAccount={selectedAccount}/>
+            <div className="flex flex-1 justify-center items-center">
+                {selectedAccount && selectedAccount.account_name !== "All Accounts" ? (
+                    <div className="w-1/2 h-3/4">
+                        <TrendChart selectedAccount={selectedAccount}/>
+                    </div>
+                ) : (
+                    <div className="w-full h-full">
+                        <TrendChart selectedAccount={selectedAccount}/>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

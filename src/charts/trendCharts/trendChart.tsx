@@ -11,8 +11,8 @@ export const TrendChart = ({ selectedAccount }: { selectedAccount: { account_nam
         ],
     } : trendChartConfig.data;    
     return (
-        <div className="h-full">
-            <Chart type="bar" data={chartData} options={trendChartConfig.options} />
+        <div className="w-full h-full">
+            <Chart type="bar" data={chartData} options={{ ...trendChartConfig.options, maintainAspectRatio: false }} />
         </div>
     );
 }
