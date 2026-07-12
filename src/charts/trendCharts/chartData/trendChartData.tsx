@@ -40,29 +40,5 @@ export const totalsByMonth = MONTH_DATES.map((month) => {
 });
 
 export const trendChartData = {
-    labels: MONTHS,
-    datasets: ACCOUNTS.flatMap(({ name, color }) => ([
-        {
-            label: `${name} (Cost)`,
-            data: MONTH_DATES.map((month) =>
-                newValidRows
-                    .filter((row) => row.account_name === name && row.date.startsWith(month))
-                    .reduce((sum, row) => sum + Number(row.cost ?? 0), 0)
-            ),
-            backgroundColor: `rgba(${color}, 0.7)`,
-            borderColor: `rgb(${color})`,
-            borderWidth: 2,
-        },
-        {
-            label: `${name} (Budget)`,
-            data: MONTH_DATES.map((month) =>
-                newValidRows
-                    .filter((row) => row.account_name === name && row.date.startsWith(month))
-                    .reduce((sum, row) => sum + Number(row.budget ?? 0), 0)
-            ),
-            backgroundColor: `rgba(${color}, 0.2)`,
-            borderColor: `rgb(${color})`,
-            borderWidth: 2,
-        },
-    ])),
+    labels: MONTHS,    
 };
