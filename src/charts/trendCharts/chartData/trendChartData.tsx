@@ -1,7 +1,13 @@
 import costsData from "../../../data/costs.json";
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const MONTH_DATES = ['2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07', '2026-08', '2026-09', '2026-10', '2026-11', '2026-12'];
+const MONTH_DATES = [...new Set(
+    (costsData as any[])
+        .map((entry) => entry.date.slice(0, 7))
+        .filter((yearMonth) => /^\d{4}-\d{2}$/.test(yearMonth))
+)].sort().slice(-6);
+const MONTH_LABELS: Record<string, string> = { '01': 'Jan', '02': 'Feb', '03': 'Mar', '04': 'Apr', '05': 'May', '06': 'Jun', '07': 'Jul', '08': 'Aug', '09': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dec' };
+const MONTHS = MONTH_DATES.map((yearMonth) => MONTH_LABELS[yearMonth.slice(5, 7)]);
+console.log('[trendChartData] MONTH_DATES:', MONTH_DATES, '| MONTHS:', MONTHS);
 
 export const dateFilteredJson = costsData.map((data: any) => data.cost > data.budget ? {
     date: `${data.date}`,
@@ -36,7 +42,7 @@ export const overBudgetItems = newValidRows as {
 }[];
 
 export const allAccountsChartData = {
-    labels: overBudgetItems.map((d) => `${d.account_name} (${d.date})`),
+    labels: overBudgetItems.map((item) => `${item.account_name} (${item.date})`),
     datasets: [
         { label: 'Cost',   backgroundColor: "rgba(46, 44, 211, 0.7)", data: overBudgetItems.map((dataItem) => dataItem.cost) },
         { label: 'Budget', backgroundColor: "rgba(215, 44, 44, 0.7)", data: overBudgetItems.map((dataItem) => dataItem.budget) },
