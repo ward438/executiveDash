@@ -42,7 +42,9 @@ export const MainNavMenu = () => {
                 ))}
             </div>            
             <div className="flex-1 min-w-0 h-screen overflow-hidden">
-                <ActiveComponent />
+                {activeLabel === 'Dashboard'
+                    ? <MainDash onExpand={setActiveLabel} />
+                    : <ActiveComponent />}
                 <div className={`fixed bottom-0 left-0 flex justify-center pb-4 ${isOpen ? 'w-55' : 'w-12.75'} `}>
                     <button 
                         className="px-2 py-.5 text-sm border rounded cursor-pointer bg-warning-primary text-creamWhite-100 hover:bg-yellow-100"

@@ -38,7 +38,17 @@ const KPICard = ({ label, value, sub, red }: { label: string; value: string; sub
     </div>
 );
 
-export const MainDash = () => {
+const ExpandButton = ({ onClick }: { onClick: () => void }) => (
+    <button
+        onClick={onClick}
+        className="absolute top-3 right-3 px-2 py-1 text-xs border rounded cursor-pointer text-gray-500 bg-white hover:bg-yellow-100"
+        title="Expand"
+    >
+        ⤢
+    </button>
+);
+
+export const MainDash = ({ onExpand }: { onExpand?: (label: string) => void }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedAccount, setSelectedAccount] = useState<DropDownItem | null>(null);
     const [page, setPage] = useState(1);
@@ -77,7 +87,8 @@ export const MainDash = () => {
                 />
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col h-[1600px]">
+            <div className="relative bg-white rounded-xl shadow-sm p-5 flex flex-col h-[1600px]">
+                {onExpand && <ExpandButton onClick={() => onExpand('Trend Dashboard')} />}
                 <div className="flex items-start">
                     <div className="relative">
                         <TrendDropDown
@@ -108,7 +119,8 @@ export const MainDash = () => {
             </div>
 
             <div className="flex gap-4 min-h-[600px]">
-                <div className="bg-white rounded-xl shadow-sm overflow-auto flex-1 min-w-0">
+                <div className="relative bg-white rounded-xl shadow-sm overflow-auto flex-1 min-w-0">
+                    {onExpand && <ExpandButton onClick={() => onExpand('Cost Breakdowns')} />}
                     <CostBreakdownsTable
                         currentItems={currentItems}
                         page={page}
@@ -117,12 +129,14 @@ export const MainDash = () => {
                         title="Cost Breakdown"
                     />
                 </div>
-                <div className="bg-white rounded-xl shadow-sm overflow-auto flex-1 min-w-0">
+                <div className="relative bg-white rounded-xl shadow-sm overflow-auto flex-1 min-w-0">
+                    {onExpand && <ExpandButton onClick={() => onExpand('Budget Alerts')} />}
                     <BudgetAlerts />
                 </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm overflow-auto">
+            <div className="relative bg-white rounded-xl shadow-sm overflow-auto">
+                {onExpand && <ExpandButton onClick={() => onExpand('Insights')} />}
                 <Insights />
             </div>
 
