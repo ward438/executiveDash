@@ -10,9 +10,10 @@ export const TrendChart = ({ selectedAccount }: { selectedAccount: { account_nam
             { label: 'Budget', backgroundColor: "rgba(215, 44, 44, 0.7)", data: [selectedAccount.budget] },
         ],
     } : trendChartConfig.data;
-
+    console.log(chartData.datasets[0].data);
     return (
         <div className="h-full">
+            {/* <h1>{chartData.labels}</h1> */}
             <Chart type="bar" data={chartData} options={trendChartConfig.options} />
         </div>
     );
