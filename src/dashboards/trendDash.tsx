@@ -5,7 +5,7 @@ import { TrendDropDown } from "../charts/trendCharts/components/trendDropDown";
 export const TrendDash = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedAccount, setSelectedAccount] = useState<{ account_name: string; cost: number; budget: number, date: string } | null>(null);
+    const [selectedAccount, setSelectedAccount] = useState<{ owner: string; account_name: string; cost: number; budget: number, date: string } | null>(null);
     return (
         <div className="w-full h-screen flex flex-col p-8">
             <div className="flex items-center justify-center">
@@ -14,19 +14,21 @@ export const TrendDash = () => {
             <div className="-mt-12">
                 <TrendDropDown isOpen={isOpen} setIsOpen={setIsOpen} selectedAccount={selectedAccount} setSelectedAccount={setSelectedAccount}/>
                 {selectedAccount && selectedAccount.account_name !== "All Accounts" && (
-                    <div className="flex justify-center">
+                    <div className="flex justify-center mt-1">
                         <span className="text-sm">
-                            <strong>{selectedAccount.account_name}</strong> | Cost: ${selectedAccount.cost} | Budget: ${selectedAccount.budget} | Date: {selectedAccount.date}
+                            <strong>{selectedAccount.owner} - {selectedAccount.account_name}</strong> | Cost: ${selectedAccount.cost} | Budget: ${selectedAccount.budget}
                         </span>
                     </div>
                 )}
             </div>
             <div className="flex flex-1 justify-center items-center">
                 {selectedAccount && selectedAccount.account_name !== "All Accounts" ? (
+                    // single account
                     <div className="w-1/2 h-3/4">
                         <TrendChart selectedAccount={selectedAccount}/>
                     </div>
                 ) : (
+                    // all accounts
                     <div className="w-full h-full">
                         <TrendChart selectedAccount={selectedAccount}/>
                     </div>
