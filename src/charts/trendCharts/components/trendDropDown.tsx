@@ -1,6 +1,8 @@
 import { dateFilteredJson } from "../chartData/trendChartData";
 
-export const TrendDropDown = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (isOpen: boolean) => void }) => {        
+export const TrendDropDown = (
+    { isOpen, setIsOpen, selectedAccount, setSelectedAccount }: { isOpen: boolean; setIsOpen: (isOpen: boolean) => void, selectedAccount: string | null, setSelectedAccount: (selectedAccount: string | null) => void }
+) => {        
     return <>  
         <button onClick={() => setIsOpen(!isOpen)} className=" text-warning-primary inline-flex items-center justify-center border font-medium rounded-base text-sm px-4 py-2.5 cursor-pointer" >
             Over Budget Items

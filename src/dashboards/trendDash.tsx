@@ -5,6 +5,7 @@ import { TrendDropDown } from "../charts/trendCharts/components/trendDropDown";
 export const TrendDash = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
 
     return (
         <div className="w-full h-full p-8">
@@ -16,7 +17,7 @@ export const TrendDash = () => {
                 </h1>
             </div>
             <div className="-mt-12">
-                <TrendDropDown isOpen={isOpen} setIsOpen={setIsOpen} />
+                <TrendDropDown isOpen={isOpen} setIsOpen={setIsOpen} selectedAccount={selectedAccount} setSelectedAccount={setSelectedAccount}/>
             </div>
             <TrendChart />
         </div>
