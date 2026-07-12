@@ -11,6 +11,10 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
         Object.values(row).some((val) => String(val).toLowerCase().includes(search.toLowerCase()))
     );
 
+    const rowStyler = (index: number) => {
+        return index % 2 === 1 ? "bg-gray-200" : "bg-white";
+    }
+    
     return (
         <>
             <h1 className="text-2xl font-bold text-center p-8">Cost Breakdowns</h1>
@@ -28,7 +32,7 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                     </caption>
                     
                     <thead>
-                        <tr className="border">
+                        <tr className="border bg-gray-100">
                             <th className="px-4 py-2">Date</th>
                             <th className="px-4 py-2">Account</th>
                             <th className="px-4 py-2">Service</th>
@@ -40,7 +44,7 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                     </thead>
                     <tbody>
                         {filteredItems.map((row, index) => (
-                            <tr key={index} className="border">
+                            <tr key={index} className={`border ${rowStyler(index)}`}>
                                 <td className="px-4 py-2">{row.date}</td>
                                 <td className="px-4 py-2">{row.account_name}</td>
                                 <td className="px-4 py-2">{row.service}</td>

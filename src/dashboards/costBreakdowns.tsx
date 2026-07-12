@@ -18,7 +18,7 @@ export const CostBreakdowns = () => {
             totalPages={totalPages}
             handlePageChange={handlePageChange}
         />    
-        <h1 className="text-2xl font-bold text-center p-8">ToDo: filter and sort options</h1>
+        <h1 className="text-2xl font-bold text-center p-8">ToDo: sort options</h1>
     </>
         
     );
