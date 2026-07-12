@@ -38,7 +38,7 @@ export const trendChartData = {
         data: MONTH_DATES.map((month) =>
             newValidRows
                 .filter((row) => row.account_name === name && row.date.startsWith(month))
-                .reduce((sum, row) => + (row.cost ?? 0), 0)
+                .reduce((row: any) => Number(row.cost ?? 0), 0)
         ),
         backgroundColor: `rgba(${color}, 0.2)`,
         borderColor: `rgb(${color})`,

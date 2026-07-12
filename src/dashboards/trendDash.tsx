@@ -1,6 +1,6 @@
 import { TrendChart } from "../charts/trendCharts/trendChart";
-import { TrendDropDown } from "../charts/trendCharts/trendChart";
 import { useState } from "react";
+import { TrendDropDown } from "../charts/trendCharts/components/trendDropDown";
 
 export const TrendDash = () => {
 
