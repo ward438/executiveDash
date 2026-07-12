@@ -35,6 +35,10 @@ export const BudgetAlerts = () => {
         setCreatedAlerts((prev) => [...prev, alert]);
     };
 
+    const handleDeleteAlert = (index: number) => {
+        setCreatedAlerts((prev) => prev.filter((_, i) => i !== index));
+    };
+
     return (
     <>
         <div className="w-full h-full p-8 overflow-y-auto">
@@ -76,7 +80,7 @@ export const BudgetAlerts = () => {
                         <div className="max-h-48 overflow-y-auto">
                         <table className="table-auto border w-full">
                             <thead>
-                                <tr className="border bg-gray-200">
+                                <tr className="border bg-gray-200 sticky top-0">
                                     <th className="px-4 py-2">Date</th>
                                     <th className="px-4 py-2">Account</th>
                                     <th className="px-4 py-2">Service</th>
@@ -86,6 +90,7 @@ export const BudgetAlerts = () => {
                                     <th className="px-4 py-2">Budget</th>
                                     <th className="px-4 py-2">Threshold</th>
                                     <th className="px-4 py-2">Description</th>
+                                    <th className="px-4 py-2"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,6 +105,14 @@ export const BudgetAlerts = () => {
                                         <td className="px-4 py-2">${alert.budget?.toLocaleString()}</td>
                                         <td className="px-4 py-2">{alert.threshold}</td>
                                         <td className="px-4 py-2">{alert.description}</td>
+                                        <td className="px-4 py-2">
+                                            <button
+                                                onClick={() => handleDeleteAlert(index)}
+                                                className="text-red-500 hover:text-red-700 text-xs font-semibold cursor-pointer"
+                                            >
+                                                Delete
+                                            </button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
