@@ -17,18 +17,11 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
     
     return (
         <>
-            <h1 className="text-2xl font-bold text-center p-8">Cost Breakdowns</h1>
-            <div className="flex flex-col items-center justify-center -mt-5">
+            {/* <h1 className="text-2xl font-bold text-center p-8">Cost Breakdowns</h1> */}
+            <div className="flex flex-col items-center justify-center">
                 <table className="table-auto border">
                     <caption className="caption-top">
-                        <p className="text-sm text-gray-500 text-center mb-2">This table shows over budget items.</p>
-                        <input
-                            className="placeholder:text-gray-500 placeholder:italic ... border mb-2"
-                            placeholder="Search table..."
-                            type="text"
-                            name="search"
-                            onChange={(e) => setSearch(e.target.value)}
-                        />
+                        <p className="text-sm text-gray-500 text-left mt-2 mb-2">This table shows under budget items, select an account to view more details.</p>
                     </caption>
                     
                     <thead>

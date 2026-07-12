@@ -3,8 +3,8 @@ import type { DropDownItem } from '../../../types';
 export type { DropDownItem };
 
 export const TrendDropDown = (
-    { isOpen, setIsOpen, setSelectedAccount, items, label }: 
-    { isOpen: boolean; setIsOpen: (isOpen: boolean) => void; selectedAccount: DropDownItem | null; setSelectedAccount: (selectedAccount: DropDownItem | null) => void; items: DropDownItem[]; label: string }
+    { isOpen, setIsOpen, setSelectedAccount, items, label, onSelectAll }: 
+    { isOpen: boolean; setIsOpen: (isOpen: boolean) => void; selectedAccount: DropDownItem | null; setSelectedAccount: (selectedAccount: DropDownItem | null) => void; items: DropDownItem[]; label: string; onSelectAll?: () => void }
 ) => {     
     return <>  
         <button onClick={() => setIsOpen(!isOpen)} className=" text-warning-primary inline-flex items-center justify-center border font-medium rounded-base text-sm px-4 py-2.5 cursor-pointer" >
@@ -14,7 +14,7 @@ export const TrendDropDown = (
                 
         {isOpen && (
             <div className="absolute bg-white border z-10 flex flex-col w-80 max-h-64 overflow-y-auto shadow-md">
-                <button onClick={() => { setSelectedAccount(null); setIsOpen(false); }} className="text-left px-3 py-1.5 text-sm hover:bg-yellow-100 border-b font-semibold">
+                <button onClick={() => { setSelectedAccount(null); setIsOpen(false); onSelectAll?.(); }} className="text-left px-3 py-1.5 text-sm hover:bg-yellow-100 border-b font-semibold">
                     All Accounts
                 </button>
                 {items.map((data, index) => (
