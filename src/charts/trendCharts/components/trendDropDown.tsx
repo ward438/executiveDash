@@ -19,7 +19,7 @@ export const TrendDropDown = (
                 </button>
                 {dateFilteredJson.filter((data) => data != null).map((data: any, index: number) => (
                     <button onClick={() => setSelectedAccount({ date: data.date, account_name: data.account_name, account_id: data.account_id, service: data.service, region: data.region, owner: data.owner, cost: data.cost, budget: data.budget })} key={index} className="text-left px-3 py-1.5 text-sm hover:bg-yellow-100 border-b last:border-b-0">
-                        {`${data.account_name} | cost:  $${data.cost} | budget: $${data.budget}`}
+                        {`${data.date} | ${data.account_name} | ${data.service} | ${data.owner} | cost: $${data.cost} | budget: $${data.budget}`}
                     </button>
                 ))}
             </div>
