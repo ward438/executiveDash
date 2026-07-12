@@ -5,7 +5,7 @@ import { underBudgetItems } from "../charts/trendCharts/chartData/trendChartData
 import { CostBreakdownsTable } from "../components/tables/costBreakdownTable";
 import { alternatingRowStyle } from "../components/tables/tableUtils";
 
-export const BudgetAlerts = () => {
+export const BudgetAlerts = ({ wide }: { wide?: boolean }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedAccount, setSelectedAccount] = useState<DropDownItem | null>(null);
     const [showAll, setShowAll] = useState(true);
@@ -43,7 +43,7 @@ export const BudgetAlerts = () => {
     <>
         <div className="w-full h-full p-8 overflow-y-auto">
             <h1 className="text-2xl font-bold text-center mb-5">Budget Alerts</h1>
-            <div className="flex flex-col border bg-gray-100 rounded-sm p-8 w-3/4 mx-auto gap-6">
+            <div className={`flex flex-col border bg-gray-100 rounded-sm p-8 mx-auto gap-6 ${wide ? "w-full" : "w-3/4"}`}>
                 <div className="flex flex-col items-center justify-center relative">
                     <TrendDropDown
                         isOpen={isOpen}

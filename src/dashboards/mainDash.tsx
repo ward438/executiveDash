@@ -128,7 +128,7 @@ export const MainDash = ({ onExpand }: { onExpand?: (label: string) => void }) =
                 <div className="relative bg-white rounded-xl shadow-sm overflow-auto flex-1">
                     {onExpand && <ExpandButton onClick={() => onExpand('Budget Alerts')} />}
                     <div className="-mt-5">
-                        <BudgetAlerts />
+                        <BudgetAlerts wide />
                     </div>
                 </div>
             </div>
