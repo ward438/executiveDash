@@ -40,6 +40,17 @@ export const overBudgetItems = newValidRows as {
     region: string; owner: string; cost: number; budget: number;
 }[];
 
+export const allItems = (costsData as any[]).map((data) => ({
+    date: String(data.date),
+    account_name: String(data.account_name),
+    account_id: String(data.account_id),
+    service: String(data.service),
+    region: String(data.region),
+    owner: String(data.owner),
+    cost: Number(data.cost),
+    budget: Number(data.budget),
+}));
+
 export const underBudgetItems = (costsData as any[])
     .filter((data) => data.cost <= data.budget)
     .map((data) => ({
