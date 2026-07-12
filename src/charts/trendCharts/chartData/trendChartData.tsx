@@ -12,7 +12,7 @@ const ACCOUNTS = [
 ];
 
 
-const dateFilteredJson = costsData.map((data: any) => data.cost > data.budget ? {
+export const dateFilteredJson = costsData.map((data: any) => data.cost > data.budget ? {
     date: `${data.date}`,
     cost: `${data.cost}`, 
     budget: `${data.budget}`,

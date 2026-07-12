@@ -1,18 +1,7 @@
 import { Chart } from "react-chartjs-2";
 import { trendChartConfig } from "./config/trendChartConfig";
 import costsData from "../../data/costs.json";
-
-
-
-export const dateFilteredJson = costsData.map((data: any) => data.cost > data.budget ? {
-    date: `${data.date}`,
-    cost: `${data.cost}`, 
-    budget: `${data.budget}`,
-    account_name: `${data.account_name}`,
-    service: `${data.service}`,
-    region: `${data.region}`,
-    owner: `${data.owner}`,
-} : null);
+import { dateFilteredJson } from "./chartData/trendChartData";
 
 export const TrendDropDown = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (isOpen: boolean) => void }) => {        
     return <>  
