@@ -1,8 +1,8 @@
 import { dateFilteredJson } from "../chartData/trendChartData";
 
 export const TrendDropDown = (
-    { isOpen, setIsOpen, selectedAccount, setSelectedAccount }: { isOpen: boolean; setIsOpen: (isOpen: boolean) => void, selectedAccount: string | null, setSelectedAccount: (selectedAccount: string | null) => void }
-) => {        
+    { isOpen, setIsOpen, selectedAccount, setSelectedAccount }: { isOpen: boolean; setIsOpen: (isOpen: boolean) => void, selectedAccount: { account_name: string; cost: string; budget: string } | null, setSelectedAccount: (selectedAccount: { account_name: string; cost: string; budget: string } | null) => void }
+) => {      
     return <>  
         <button onClick={() => setIsOpen(!isOpen)} className=" text-warning-primary inline-flex items-center justify-center border font-medium rounded-base text-sm px-4 py-2.5 cursor-pointer" >
             Over Budget Items
@@ -13,7 +13,7 @@ export const TrendDropDown = (
         {isOpen && (
             <div className="absolute bg-white border z-10 flex flex-col w-80 max-h-64 overflow-y-auto shadow-md">
                 {dateFilteredJson.filter((data) => data != null).map((data: any, index: number) => (
-                    <button key={index} className="text-left px-3 py-1.5 text-sm hover:bg-yellow-100 border-b last:border-b-0">
+                    <button onClick={() => setSelectedAccount({account_name: data.account_name, cost: data.cost, budget: data.budget})} key={index} className="text-left px-3 py-1.5 text-sm hover:bg-yellow-100 border-b last:border-b-0">
                         {`${data.account_name} | cost:  $${data.cost} | budget: $${data.budget}`}
                     </button>
                 ))}

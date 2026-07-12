@@ -5,8 +5,8 @@ import { TrendDropDown } from "../charts/trendCharts/components/trendDropDown";
 export const TrendDash = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
-
+    const [selectedAccount, setSelectedAccount] = useState<{ account_name: string; cost: string; budget: string } | null>(null);
+    console.log(selectedAccount);
     return (
         <div className="w-full h-full p-8">
             <div className="flex items-center justify-center">
