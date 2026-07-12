@@ -13,11 +13,9 @@ const accounts: any[] = (summaryData as any).accounts;
 
 const overBudgetCount = overBudgetItems.length;
 
-// unique list of owners with at least one over-budget item
 const allOwners = overBudgetItems.map((item) => item.owner);
 const overBudgetOwners = allOwners.filter((owner, index) => allOwners.indexOf(owner) === index);
 
-// account furthest over budget (biggest variance)
 let worstAccount = accounts[0];
 for (const acct of accounts) {
     if (acct.variance > worstAccount.variance) {
@@ -25,14 +23,13 @@ for (const acct of accounts) {
     }
 }
 
-// account that has used the highest % of its budget
 let highRiskAccount = accounts[0];
 for (const acct of accounts) {
     if (acct.utilization_pct > highRiskAccount.utilization_pct) {
         highRiskAccount = acct;
     }
 }
-console.log(worstAccount);
+
 const KPICard = ({ label, value, sub, red }: { label: string; value: string; sub?: string; red?: boolean }) => (
     <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col gap-1 flex-1 min-w-0">
         <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">{label}</span>
@@ -52,7 +49,6 @@ export const MainDash = () => {
     return (
         <div className="w-full h-full overflow-y-auto bg-gray-50 p-6 flex flex-col gap-5">
 
-            {/* Row 1 — KPI Cards */}
             <div className="flex gap-4">
                 <KPICard label="Total Cloud Spend" value={`$${Number(totals.total_cost).toLocaleString()}`} />
                 <KPICard label="Total Budget" value={`$${Number(totals.total_budget).toLocaleString()}`} />
@@ -81,7 +77,6 @@ export const MainDash = () => {
                 />
             </div>
 
-            {/* Row 2 — Trend Chart */}
             <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col h-[1600px]">
                 <div className="flex items-start">
                     <div className="relative">
@@ -112,7 +107,6 @@ export const MainDash = () => {
                 </div>
             </div>
 
-            {/* Row 3 — Cost Breakdown | Budget Alerts */}
             <div className="flex gap-4 min-h-[600px]">
                 <div className="bg-white rounded-xl shadow-sm overflow-auto flex-1 min-w-0">
                     <CostBreakdownsTable
@@ -128,7 +122,6 @@ export const MainDash = () => {
                 </div>
             </div>
 
-            {/* Row 4 — Insights */}
             <div className="bg-white rounded-xl shadow-sm overflow-auto">
                 <Insights />
             </div>
