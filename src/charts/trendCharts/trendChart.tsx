@@ -4,7 +4,6 @@ import { allAccountsChartData } from "./chartData/trendChartData";
 import type { CostRecord } from "../../types";
 
 export const TrendChart = ({ selectedAccount }: { selectedAccount: CostRecord | null }) => {
-    console.log(allAccountsChartData);
     const chartData = selectedAccount ? {
         labels: [selectedAccount.account_name],
         datasets: [
