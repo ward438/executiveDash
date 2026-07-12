@@ -1,6 +1,11 @@
 import { TrendChart } from "../charts/trendCharts/trendChart";
+import { TrendDropDown } from "../charts/trendCharts/trendChart";
+import { useState } from "react";
 
 export const TrendDash = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div className="w-full h-full p-8">
             <div className="flex items-center justify-center">
@@ -9,6 +14,9 @@ export const TrendDash = () => {
                         Trend Dashboard
                     </span>
                 </h1>
+            </div>
+            <div className="-mt-12">
+                <TrendDropDown isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
             <TrendChart />
         </div>
