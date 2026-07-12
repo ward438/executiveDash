@@ -1,7 +1,7 @@
 import { dateFilteredJson } from "../chartData/trendChartData";
 
 export const TrendDropDown = (
-    { isOpen, setIsOpen, selectedAccount, setSelectedAccount }: { isOpen: boolean; setIsOpen: (isOpen: boolean) => void, selectedAccount: { account_name: string; cost: string; budget: string } | null, setSelectedAccount: (selectedAccount: { account_name: string; cost: string; budget: string } | null) => void }
+    { isOpen, setIsOpen, selectedAccount, setSelectedAccount }: { isOpen: boolean; setIsOpen: (isOpen: boolean) => void, selectedAccount: { account_name: string; cost: number; budget: number } | null, setSelectedAccount: (selectedAccount: { account_name: string; cost: number; budget: number } | null) => void }
 ) => {      
     return <>  
         <button onClick={() => setIsOpen(!isOpen)} className=" text-warning-primary inline-flex items-center justify-center border font-medium rounded-base text-sm px-4 py-2.5 cursor-pointer" >
