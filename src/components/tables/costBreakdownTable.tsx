@@ -11,6 +11,8 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
     const [search, setSearch] = useState("");
     const [selectedRow, setSelectedRow] = useState<any>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [threshold, setThreshold] = useState<number | "">(""); 
+    const [description, setDescription] = useState("");
 
     const filteredItems = currentItems.filter((row) =>
         Object.values(row).some((val) => String(val).toLowerCase().includes(search.toLowerCase()))
@@ -83,8 +85,8 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
             </div>
             {isModalOpen && (
                 <div className="fixed inset-0 bg-white opacity-100 flex items-center justify-center">
-                    <div className="bg-purple-100 p-4 rounded-md w-1/2 h-1/2 border">
-                        <button className="cursor-pointer px-3 py-1 border rounded disabled:opacity-40 float-right bg-warning-primary text-creamWhite-100" onClick={() => setIsModalOpen(false)}>Close</button>
+                    <div className="bg-purple-100 p-4 rounded-md w-1/3 h-1/2 border flex flex-col">
+                        {/* <button className="cursor-pointer px-3 py-1 border rounded disabled:opacity-40 float-right bg-warning-primary text-creamWhite-100" onClick={() => setIsModalOpen(false)}>Close</button> */}
                         <div className="flex flex-col items-center justify-center">
                             <h2 className="text-1xl text-white text-center">{selectedRow.account_name}</h2>
                             <div className="col-span-2 ...">
@@ -92,7 +94,7 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                         </div>
                         </div>
                         <div className="grid grid-flow-col grid-rows-3 gap-4 mt-6">
-                        <div className="row-span-3 grid grid-cols-[auto_1fr] gap-x-2 gap-y-3 items-center">
+                        <div className="row-span-3 grid grid-cols-[auto_1fr] gap-x-2  items-center">
                             <span className="text-sm text-white">Owner:</span>
                             <span className="border border-gray-300 p-1 rounded text-black bg-white">{selectedRow.owner}</span>
 
@@ -107,14 +109,36 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
 
                             <span className="text-sm text-white">Budget:</span>
                             <span className="border border-gray-300 p-1 rounded text-black bg-white">{selectedRow.budget}</span>
+                        </div>                       
+                        <div className="col-span-2 row-span-2 flex flex-col gap-3 p-3">
+                            <div className="flex flex-col gap-1">
+                                <label className="text-sm text-white -mt-4.5">Threshold Amount</label>
+                                <input
+                                    type="number"
+                                    placeholder="e.g. 5000"
+                                    value={threshold}
+                                    onChange={(e) => setThreshold(e.target.value === "" ? "" : Number(e.target.value))}
+                                    className="border border-gray-300 p-1 rounded text-black bg-white w-full"
+                                />
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <label className="text-sm text-white">Description <span className="text-gray-400 text-xs">(optional)</span></label>
+                                <textarea
+                                    placeholder="e.g. Alert when S3 exceeds budget..."
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    className="border border-gray-300 p-1 rounded text-black bg-white w-full resize-none"
+                                    rows={3}
+                                />
+                            </div>
+                            <button className="mt-auto px-3 py-1.5 border bg-warning-primary text-white rounded text-sm cursor-pointer hover:bg-warning-secondary/80">
+                                Create Alert
+                            </button>
                         </div>
-                        {/* <div className="col-span-2 ...">
-                            <span className="text-white">Create a new budget alert for this account</span>
-                            
-                        </div> */}
-                        <div className="col-span-2 row-span-2 ...">03</div>
                         </div>
+                        <button className="mt-auto self-end cursor-pointer px-3 py-1 border rounded bg-warning-primary text-creamWhite-100" onClick={() => setIsModalOpen(false)}>Close</button>
                     </div>
+                    
                 </div>
             )}
         </>
