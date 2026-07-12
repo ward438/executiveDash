@@ -7,7 +7,7 @@ import { CostBreakdownsTable } from "../components/tables/costBreakdownTable";
 export const BudgetAlerts = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedAccount, setSelectedAccount] = useState<DropDownItem | null>(null);
-    const [showAll, setShowAll] = useState(false);
+    const [showAll, setShowAll] = useState(true);
     const [page, setPage] = useState(1);
     const itemsPerPage = 20;
     const totalPages = Math.ceil(underBudgetItems.length / itemsPerPage);
@@ -32,6 +32,7 @@ export const BudgetAlerts = () => {
                         items={underBudgetItems}
                         label="Under Budget Accounts"
                         onSelectAll={() => setShowAll(true)}
+                        
                     />
                 </div>
                 {showAll && (
