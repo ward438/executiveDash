@@ -19,7 +19,7 @@ export const BudgetAlertModal = ({ row, onClose, onSave }: BudgetAlertModalProps
     };
 
     return (
-        <div className="fixed inset-0 bg-white opacity-100 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <div className="bg-purple-100 p-4 rounded-md w-1/3 border flex flex-col gap-3">
                 <div className="flex flex-col items-center justify-center">
                     <h2 className="text-center border border-gray-300 p-1 rounded bg-white text-black">{row.account_name}</h2>
