@@ -3,15 +3,6 @@ import costsData from "../../../data/costs.json";
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const MONTH_DATES = ['2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07', '2026-08', '2026-09', '2026-10', '2026-11', '2026-12'];
 
-const ACCOUNTS = [
-    { name: 'Platform Engineering', color: '54, 162, 235' },
-    { name: 'Data Analytics',       color: '255, 99, 132' },
-    { name: 'Networking',           color: '255, 205, 86' },
-    { name: 'DevOps Tooling',       color: '75, 192, 192' },
-    { name: 'Security',             color: '153, 102, 255' },
-];
-
-
 export const dateFilteredJson = costsData.map((data: any) => data.cost > data.budget ? {
     date: `${data.date}`,
     cost: Number(data.cost),
