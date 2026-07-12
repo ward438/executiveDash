@@ -1,10 +1,12 @@
 import { useState } from "react";
 
-export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePageChange }: {
+export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePageChange, title, caption }: {
     currentItems: any[];
     page: number;
     totalPages: number;
     handlePageChange: (page: number) => void;
+    title?: string;
+    caption?: string;
 }) => {
     const [search, setSearch] = useState("");
     const filteredItems = currentItems.filter((row) =>
@@ -17,13 +19,14 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
     
     return (
         <>
-            {/* <h1 className="text-2xl font-bold text-center p-8">Cost Breakdowns</h1> */}
-            <div className="flex flex-col items-center justify-center">
+            {title && <h1 className="text-2xl font-bold text-center p-8">{title}</h1>}
+            <div className={`flex flex-col items-center justify-center ${title ? "-mt-5" : "mt-4"}`}>
                 <table className="table-auto border">
-                    <caption className="caption-top">
-                        <p className="text-sm text-gray-500 text-left mt-2 mb-2">This table shows under budget items, select an account to view more details.</p>
-                    </caption>
-                    
+                    {caption && (
+                        <caption className="caption-top">
+                            <p className="text-sm text-gray-500 text-center mb-2">{caption}</p>
+                        </caption>
+                    )}
                     <thead>
                         <tr className="border bg-gray-100">
                             <th className="px-4 py-2">Date</th>

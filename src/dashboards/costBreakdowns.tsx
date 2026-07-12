@@ -17,6 +17,8 @@ export const CostBreakdowns = () => {
             page={page}
             totalPages={totalPages}
             handlePageChange={handlePageChange}
+            title="Cost Breakdowns"
+            caption="This table shows over budget items."
         />    
         <h1 className="text-2xl font-bold text-center p-8">ToDo: sort options</h1>
     </>
