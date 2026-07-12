@@ -29,3 +29,16 @@ export const totalsByMonth = MONTH_DATES.map((month) => {
 export const trendChartData = {
     labels: MONTHS,    
 };
+
+export const overBudgetItems = newValidRows as {
+    date: string; account_name: string; service: string;
+    region: string; owner: string; cost: number; budget: number;
+}[];
+
+export const allAccountsChartData = {
+    labels: overBudgetItems.map((d) => `${d.account_name} (${d.date})`),
+    datasets: [
+        { label: 'Cost',   backgroundColor: "rgba(46, 44, 211, 0.7)", data: overBudgetItems.map((dataItem) => dataItem.cost) },
+        { label: 'Budget', backgroundColor: "rgba(215, 44, 44, 0.7)", data: overBudgetItems.map((dataItem) => dataItem.budget) },
+    ],
+};
