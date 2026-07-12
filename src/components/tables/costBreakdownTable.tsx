@@ -9,6 +9,9 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
     caption?: string;
 }) => {
     const [search, setSearch] = useState("");
+    const [selectedRow, setSelectedRow] = useState<any>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const filteredItems = currentItems.filter((row) =>
         Object.values(row).some((val) => String(val).toLowerCase().includes(search.toLowerCase()))
     );
@@ -16,7 +19,12 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
     const rowStyler = (row: any) => {
         return row.cost > row.budget ? "bg-red-100" : "bg-green-100";
     }
-    
+
+    const handleRowClick = (row: any) => {
+        setSelectedRow(row);
+        setIsModalOpen(true);
+    }
+    console.log(selectedRow);
     return (
         <>
             {title && <h1 className="text-2xl font-bold text-center p-8">{title}</h1>}
@@ -47,7 +55,7 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                     </thead>
                     <tbody>
                         {filteredItems.map((row, index) => (
-                            <tr key={index} className={`border ${rowStyler(row)}`}>
+                            <tr key={index} className={`cursor-pointer border ${rowStyler(row)}`} onClick={() => handleRowClick(row)}>
                                 <td className="px-4 py-2">{row.date}</td>
                                 <td className="px-4 py-2">{row.account_name}</td>
                                 <td className="px-4 py-2">{row.service}</td>
@@ -73,6 +81,14 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                     disabled={page === totalPages}
                 >&#8250;</button>
             </div>
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-white opacity-100 flex items-center justify-center bottom-0">
+                    <div className="bg-white p-4 rounded-md w-1/2 h-1/2 border">
+                        {/* <h2 className="text-2xl font-bold">{selectedRow.account_name}</h2> */}
+                        <button className="cursor-pointer px-3 py-1 border rounded disabled:opacity-40 float-right" onClick={() => setIsModalOpen(false)}>Close</button>
+                    </div>
+                </div>
+            )}
         </>
     );
 }
