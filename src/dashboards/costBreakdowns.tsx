@@ -11,12 +11,15 @@ export const CostBreakdowns = () => {
     const startIndex = (page - 1) * itemsPerPage;
     const currentItems = overBudgetItems.slice(startIndex, startIndex + itemsPerPage);
 
-    return (
+    return (<>
         <CostBreakdownsTable
             currentItems={currentItems}
             page={page}
             totalPages={totalPages}
             handlePageChange={handlePageChange}
-        />
+        />    
+        <h1 className="text-2xl font-bold text-center p-8">ToDo: filter and sort options</h1>
+    </>
+        
     );
 }

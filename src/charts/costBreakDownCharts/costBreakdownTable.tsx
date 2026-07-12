@@ -1,17 +1,32 @@
+import { useState } from "react";
+
 export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePageChange }: {
     currentItems: any[];
     page: number;
     totalPages: number;
     handlePageChange: (page: number) => void;
 }) => {
+    const [search, setSearch] = useState("");
+    const filteredItems = currentItems.filter((row) =>
+        Object.values(row).some((val) => String(val).toLowerCase().includes(search.toLowerCase()))
+    );
+
     return (
         <>
             <h1 className="text-2xl font-bold text-center p-8">Cost Breakdowns</h1>
             <div className="flex flex-col items-center justify-center -mt-5">
                 <table className="table-auto border">
                     <caption className="caption-top">
-                        <p className="text-sm text-gray-500 text-center mb-4">This table shows over budget items.</p>
+                        <p className="text-sm text-gray-500 text-center mb-2">This table shows over budget items.</p>
+                        <input
+                            className="placeholder:text-gray-500 placeholder:italic ... border mb-2"
+                            placeholder="Search table..."
+                            type="text"
+                            name="search"
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
                     </caption>
+                    
                     <thead>
                         <tr className="border">
                             <th className="px-4 py-2">Date</th>
@@ -24,7 +39,7 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                         </tr>
                     </thead>
                     <tbody>
-                        {currentItems.map((row, index) => (
+                        {filteredItems.map((row, index) => (
                             <tr key={index} className="border">
                                 <td className="px-4 py-2">{row.date}</td>
                                 <td className="px-4 py-2">{row.account_name}</td>
