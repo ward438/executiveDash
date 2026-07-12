@@ -18,9 +18,11 @@ export const TrendDash = () => {
             <div className="-mt-12">
                 <TrendDropDown isOpen={isOpen} setIsOpen={setIsOpen} selectedAccount={selectedAccount} setSelectedAccount={setSelectedAccount}/>
                 {selectedAccount && (
-                    <span className="text-sm">
-                        <strong>{selectedAccount.account_name}</strong> | Cost: ${selectedAccount.cost} | Budget: ${selectedAccount.budget}
-                    </span>
+                    <div className="flex justify-center">
+                        <span className="text-sm">
+                            <strong>{selectedAccount.account_name}</strong> | Cost: ${selectedAccount.cost} | Budget: ${selectedAccount.budget}
+                        </span>
+                    </div>
                 )}
             </div>
             <TrendChart selectedAccount={selectedAccount}/>
