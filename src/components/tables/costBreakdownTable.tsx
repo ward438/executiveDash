@@ -13,6 +13,7 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [threshold, setThreshold] = useState<number | "">(""); 
     const [description, setDescription] = useState("");
+    const [submittedAlert, setSubmittedAlert] = useState<{ threshold: number | ""; description: string } | null>(null);
 
     const filteredItems = currentItems.filter((row) =>
         Object.values(row).some((val) => String(val).toLowerCase().includes(search.toLowerCase()))
@@ -21,6 +22,8 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
     const rowStyler = (row: any) => {
         return row.cost > row.budget ? "bg-red-100" : "bg-green-100";
     }
+
+    const alertChanged = !submittedAlert || threshold !== submittedAlert.threshold || description !== submittedAlert.description;
 
     const handleRowClick = (row: any) => {
         setSelectedRow(row);
@@ -85,10 +88,9 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
             </div>
             {isModalOpen && (
                 <div className="fixed inset-0 bg-white opacity-100 flex items-center justify-center">
-                    <div className="bg-purple-100 p-4 rounded-md w-1/3 h-1/2 border flex flex-col">
-                        {/* <button className="cursor-pointer px-3 py-1 border rounded disabled:opacity-40 float-right bg-warning-primary text-creamWhite-100" onClick={() => setIsModalOpen(false)}>Close</button> */}
+                    <div className="bg-purple-100 p-4 rounded-md w-1/3 border flex flex-col gap-3">
                         <div className="flex flex-col items-center justify-center">
-                            <h2 className="text-1xl text-white text-center">{selectedRow.account_name}</h2>
+                            <h2 className="text-center border border-gray-300 p-1 rounded bg-white text-black">{selectedRow.account_name}</h2>
                             <div className="col-span-2 ...">
                             <span className="text-sm text-white">Create a new budget alert for this account</span>                            
                         </div>
@@ -115,7 +117,7 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                                 <label className="text-sm text-white -mt-4.5">Threshold Amount</label>
                                 <input
                                     type="number"
-                                    placeholder="e.g. 5000"
+                                    placeholder="e.g. 1000"
                                     value={threshold}
                                     onChange={(e) => setThreshold(e.target.value === "" ? "" : Number(e.target.value))}
                                     className="border border-gray-300 p-1 rounded text-black bg-white w-full"
@@ -131,12 +133,25 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                                     rows={3}
                                 />
                             </div>
-                            <button className="mt-auto px-3 py-1.5 border bg-warning-primary text-white rounded text-sm cursor-pointer hover:bg-warning-secondary/80">
+                            {submittedAlert && (
+                                <div className="border border-gray-300 rounded bg-white/10 p-2 text-sm text-white mt-1">
+                                    <p><span className="font-semibold">Threshold:</span> {submittedAlert.threshold}</p>
+                                    {submittedAlert.description && <p><span className="font-semibold">Note:</span> {submittedAlert.description}</p>}
+                                    <p><span className="font-semibold">Account:</span> {selectedRow.account_name} — {selectedRow.service}</p>
+                                </div>
+                            )}
+                        </div>
+                        </div>
+                        <div className="flex justify-end gap-2">
+                            <button
+                                className="px-3 py-1.5 border bg-warning-primary text-white rounded text-sm cursor-pointer hover:bg-warning-secondary/80 disabled:opacity-40 disabled:cursor-not-allowed"
+                                onClick={() => setSubmittedAlert({ threshold, description })}
+                                disabled={!alertChanged}
+                            >
                                 Create Alert
                             </button>
+                            <button className="cursor-pointer px-3 py-1 border rounded bg-warning-primary text-creamWhite-100 hover:bg-warning-secondary/80" onClick={() => { setIsModalOpen(false); setSubmittedAlert(null); }}>Close</button>
                         </div>
-                        </div>
-                        <button className="mt-auto self-end cursor-pointer px-3 py-1 border rounded bg-warning-primary text-creamWhite-100" onClick={() => setIsModalOpen(false)}>Close</button>
                     </div>
                     
                 </div>
