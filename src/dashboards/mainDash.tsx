@@ -7,6 +7,7 @@ import type { DropDownItem } from "../charts/trendCharts/components/trendDropDow
 import { CostBreakdownsTable } from "../components/tables/costBreakdownTable";
 import { BudgetAlerts } from "./budgetAlerts";
 import { Insights } from "./insights";
+import { KPICard } from "../components/KPICard";
 
 const totals = (summaryData as any).totals;
 const accounts: any[] = (summaryData as any).accounts;
@@ -29,14 +30,6 @@ for (const acct of accounts) {
         highRiskAccount = acct;
     }
 }
-
-const KPICard = ({ label, value, sub, red }: { label: string; value: string; sub?: string; red?: boolean }) => (
-    <div className="bg-white rounded-xl shadow-sm p-5 flex flex-col gap-1 flex-1 min-w-0">
-        <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">{label}</span>
-        <span className={`text-2xl font-bold truncate ${red ? "text-red-500" : "text-gray-800"}`}>{value}</span>
-        {sub && <span className="text-xs text-gray-400 truncate">{sub}</span>}
-    </div>
-);
 
 const ExpandButton = ({ onClick }: { onClick: () => void }) => (
     <button
@@ -70,19 +63,19 @@ export const MainDash = ({ onExpand }: { onExpand?: (label: string) => void }) =
                 <KPICard
                     label="Owners Over Budget"
                     value={String(overBudgetOwners.length)}
-                    sub={overBudgetOwners.join(", ")}
+                    subtitle={overBudgetOwners.join(", ")}
                     red
                 />
                 <KPICard
                     label="Largest Variance"
                     value={`$${Number(worstAccount?.variance ?? 0).toLocaleString()}`}
-                    sub={worstAccount?.account_name}
+                    subtitle={worstAccount?.account_name}
                     red
                 />
                 <KPICard
                     label="Highest Risk"
                     value={`${Number(highRiskAccount?.utilization_pct ?? 0).toFixed(1)}%`}
-                    sub={highRiskAccount?.account_name}
+                    subtitle={highRiskAccount?.account_name}
                     red
                 />
             </div>
