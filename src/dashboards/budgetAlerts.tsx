@@ -1,7 +1,25 @@
+import costData from "../data/costs.json";
+
+
 export const BudgetAlerts = () => {
     return (
+    <>
         <div className="w-full h-full p-8">
-            <h1 className="text-2xl font-bold text-center">Budget Alerts</h1>
+            <h1 className="text-2xl font-bold text-center mb-5">Budget Alerts</h1>
+            <div className="flex flex-col border p-8 w-3/4 mx-auto">
+                <div className="flex flex-col items-center justify-center">
+                    Budget Alert Form
+                </div>
+                <div className="grid auto-cols-max grid-flow-col gap-20">
+                    <div className="border">01</div>
+                    <div>02</div>
+                    <div>03</div>
+                </div>          
+            </div>   
+        <div className="border p-8 w-3/4 mx-auto mt-5">
+                table      
+        </div>   
         </div>
+    </>
     );
 }
