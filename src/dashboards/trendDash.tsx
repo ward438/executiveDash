@@ -15,11 +15,34 @@ export const TrendDash = () => {
             <div className="-mt-12">
                 <TrendDropDown isOpen={isOpen} setIsOpen={setIsOpen} selectedAccount={selectedAccount} setSelectedAccount={setSelectedAccount}/>
                 {selectedAccount && selectedAccount.account_name !== "All Accounts" && (
-                    <div className="flex justify-center mt-1">
-                        <span className="text-sm">
-                            <strong>{selectedAccount.owner} - {selectedAccount.account_name}</strong> | {selectedAccount.service} | {selectedAccount.region} | {selectedAccount.date} | Cost: ${selectedAccount.cost} | Budget: ${selectedAccount.budget}
-                        </span>
-                    </div>
+                    <>
+                        <div className="flex justify-center mt-3">
+                            <span className="text-sm">
+                                <strong>{selectedAccount.owner}</strong>
+                            </span>                      
+                        </div>
+                        <div className="flex justify-center mt-1">
+                            <span className="text-sm">
+                                {selectedAccount.account_name}
+                            </span>
+                        </div>
+                        <div className="flex justify-center mt-1">
+                            <span className="text-sm">
+                            {selectedAccount.date} 
+                            </span>
+                        </div>
+                        <div className="flex justify-center mt-1">
+                            <span className="text-sm">
+                                Service: {selectedAccount.service} | Region: {selectedAccount.region}
+                            </span>
+                        </div>
+                        <div className="flex justify-center mt-1">
+                            <span className="text-sm">
+                                Cost: ${selectedAccount.cost} Budget: ${selectedAccount.budget}
+                            </span>
+                        </div>
+                    
+                    </>
                 )}
             </div>
             <div className="flex flex-1 justify-center items-center">
