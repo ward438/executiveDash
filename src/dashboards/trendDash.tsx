@@ -6,7 +6,7 @@ export const TrendDash = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedAccount, setSelectedAccount] = useState<{ account_name: string; cost: number; budget: number } | null>(null);
-    console.log(typeof selectedAccount?.cost);
+    console.log(selectedAccount);
     return (
         <div className="w-full h-full p-8">
             <div className="flex items-center justify-center">
@@ -19,7 +19,7 @@ export const TrendDash = () => {
             <div className="-mt-12">
                 <TrendDropDown isOpen={isOpen} setIsOpen={setIsOpen} selectedAccount={selectedAccount} setSelectedAccount={setSelectedAccount}/>
             </div>
-            <TrendChart />
+            <TrendChart selectedAccount={selectedAccount}/>
         </div>
     );
 }
