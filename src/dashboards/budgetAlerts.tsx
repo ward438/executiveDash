@@ -51,6 +51,35 @@ export const BudgetAlerts = () => {
                         handlePageChange={() => {}}
                     />
                 )}
+                <div>Created Alerts</div>
+                <table>
+                <thead>
+                        <tr className="border bg-gray-100">
+                            <th className="px-4 py-2">Date</th>
+                            <th className="px-4 py-2">Account</th>
+                            <th className="px-4 py-2">Service</th>
+                            <th className="px-4 py-2">Region</th>
+                            <th className="px-4 py-2">Owner</th>
+                            <th className="px-4 py-2">Cost</th>
+                            <th className="px-4 py-2">Budget</th>
+                            <th className="px-4 py-2">Threshold</th>
+                            <th className="px-4 py-2">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* {filteredItems.map((row, index) => (
+                            <tr key={index} className={`cursor-pointer border ${rowStyler(row)}`} onClick={() => handleRowClick(row)}>
+                                <td className="px-4 py-2">{row.date}</td>
+                                <td className="px-4 py-2">{row.account_name}</td>
+                                <td className="px-4 py-2">{row.service}</td>
+                                <td className="px-4 py-2">{row.region}</td>
+                                <td className="px-4 py-2">{row.owner}</td>
+                                <td className="px-4 py-2">{row.cost}</td>
+                                <td className="px-4 py-2">{row.budget}</td>
+                            </tr>
+                        ))} */}
+                    </tbody>
+                </table>
             </div>
         </div>
     </>
