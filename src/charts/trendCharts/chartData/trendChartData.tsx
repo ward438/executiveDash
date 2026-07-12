@@ -33,7 +33,7 @@ const newValidRows = dateFilteredJson.filter(
 );
 
 
-console.log("newValidRows:", newValidRows);
+// console.log("newValidRows:", newValidRows);
 
 
 
