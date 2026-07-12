@@ -21,6 +21,13 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
         <>
             {title && <h1 className="text-2xl font-bold text-center p-8">{title}</h1>}
             <div className={`flex flex-col items-center justify-center ${title ? "-mt-5" : "mt-4"}`}>
+                <input
+                    className="placeholder:text-gray-500 placeholder:italic border mb-2 px-2 py-1 w-full max-w-sm"
+                    placeholder="Search table..."
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
                 <table className="table-auto border">
                     {caption && (
                         <caption className="caption-top">
