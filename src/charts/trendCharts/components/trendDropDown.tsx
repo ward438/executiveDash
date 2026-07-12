@@ -1,14 +1,21 @@
-import { dateFilteredJson } from "../chartData/trendChartData";
-import type { CostRecord } from "../../../types";
+export interface DropDownItem {
+    date: string;
+    account_name: string;
+    account_id?: string;
+    service: string;
+    region: string;
+    owner: string;
+    cost: number;
+    budget: number;
+}
 
 export const TrendDropDown = (
-    { isOpen, setIsOpen, setSelectedAccount }: 
-    { isOpen: boolean; setIsOpen: (isOpen: boolean) => void; selectedAccount: CostRecord | null; setSelectedAccount: (selectedAccount: CostRecord | null) => void }
+    { isOpen, setIsOpen, setSelectedAccount, items, label }: 
+    { isOpen: boolean; setIsOpen: (isOpen: boolean) => void; selectedAccount: DropDownItem | null; setSelectedAccount: (selectedAccount: DropDownItem | null) => void; items: DropDownItem[]; label: string }
 ) => {     
     return <>  
         <button onClick={() => setIsOpen(!isOpen)} className=" text-warning-primary inline-flex items-center justify-center border font-medium rounded-base text-sm px-4 py-2.5 cursor-pointer" >
-            Over Budget Items
-            {/* This is my carrot, need to import svg */}
+            {label}
             <svg className="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 9-7 7-7-7"/></svg>
         </button>
                 
@@ -17,7 +24,7 @@ export const TrendDropDown = (
                 <button onClick={() => setSelectedAccount(null)} className="text-left px-3 py-1.5 text-sm hover:bg-yellow-100 border-b font-semibold">
                     All Accounts
                 </button>
-                {dateFilteredJson.filter((data) => data != null).map((data: any, index: number) => (
+                {items.map((data, index) => (
                     <button onClick={() => setSelectedAccount({ date: data.date, account_name: data.account_name, account_id: data.account_id, service: data.service, region: data.region, owner: data.owner, cost: data.cost, budget: data.budget })} key={index} className="text-left px-3 py-2 text-sm hover:bg-yellow-100 border-b last:border-b-0 flex flex-col gap-0.5">
                         <span className="font-medium">{data.owner} — {data.account_name} ({data.service})</span>
                         <span className="text-xs text-gray-500">{data.date} &nbsp;|&nbsp; Cost: ${data.cost.toLocaleString()} &nbsp;|&nbsp; Budget: ${data.budget.toLocaleString()}</span>

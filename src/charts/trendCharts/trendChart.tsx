@@ -1,9 +1,9 @@
 import { Chart } from "react-chartjs-2";
 import { trendChartConfig } from "./config/trendChartConfig";
 import { allAccountsChartData } from "./chartData/trendChartData";
-import type { CostRecord } from "../../types";
+import type { DropDownItem } from "./components/trendDropDown";
 
-export const TrendChart = ({ selectedAccount }: { selectedAccount: CostRecord | null }) => {
+export const TrendChart = ({ selectedAccount }: { selectedAccount: DropDownItem | null }) => {
     const chartData = selectedAccount ? {
         labels: [selectedAccount.account_name],
         datasets: [
