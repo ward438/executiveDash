@@ -31,17 +31,38 @@ const newValidRows = dateFilteredJson.filter(
     
 );
 
+export const totalsByMonth = MONTH_DATES.map((month) => {
+    const rows = newValidRows.filter((row) => row.date.startsWith(month));
+    return {
+        cost: rows.reduce((sum, row) => sum + Number(row.cost ?? 0), 0),
+        budget: rows.reduce((sum, row) => sum + Number(row.budget ?? 0), 0),
+    };
+});
+
 export const trendChartData = {
     labels: MONTHS,
-    datasets: ACCOUNTS.map(({ name, color }) => ({
-        label: name,
-        data: MONTH_DATES.map((month) =>
-            newValidRows
-                .filter((row) => row.account_name === name && row.date.startsWith(month))
-                .reduce((sum, row) => Number(row.cost ?? 0), 0)
-        ),
-        backgroundColor: `rgba(${color}, 0.2)`,
-        borderColor: `rgb(${color})`,
-        borderWidth: 2,
-    })),
+    datasets: ACCOUNTS.flatMap(({ name, color }) => ([
+        {
+            label: `${name} (Cost)`,
+            data: MONTH_DATES.map((month) =>
+                newValidRows
+                    .filter((row) => row.account_name === name && row.date.startsWith(month))
+                    .reduce((sum, row) => sum + Number(row.cost ?? 0), 0)
+            ),
+            backgroundColor: `rgba(${color}, 0.7)`,
+            borderColor: `rgb(${color})`,
+            borderWidth: 2,
+        },
+        {
+            label: `${name} (Budget)`,
+            data: MONTH_DATES.map((month) =>
+                newValidRows
+                    .filter((row) => row.account_name === name && row.date.startsWith(month))
+                    .reduce((sum, row) => sum + Number(row.budget ?? 0), 0)
+            ),
+            backgroundColor: `rgba(${color}, 0.2)`,
+            borderColor: `rgb(${color})`,
+            borderWidth: 2,
+        },
+    ])),
 };
