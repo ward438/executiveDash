@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MainDash } from '../dashboards/mainDash';
 import { TrendDash } from '../dashboards/trendDash';
 import { CostBreakdowns } from '../dashboards/costBreakdowns';
 import { BudgetAlerts } from '../dashboards/budgetAlerts';
@@ -6,6 +7,7 @@ import { Insights } from '../dashboards/insights';
 import { LogOut } from '../dashboards/logOut';
 
 const navItems = [
+    { label: 'Dashboard', component: MainDash },
     { label: 'Trend Dashboard', component: TrendDash },
     { label: 'Cost Breakdowns', component: CostBreakdowns },
     { label: 'Budget Alerts', component: BudgetAlerts },
@@ -14,7 +16,7 @@ const navItems = [
 
 export const MainNavMenu = () => {
     const [isOpen, setIsOpen] = useState(true);
-    const [activeLabel, setActiveLabel] = useState('Trend Dashboard');
+    const [activeLabel, setActiveLabel] = useState('Dashboard');
     const ActiveComponent = navItems.find((item) => item.label === activeLabel)!.component;
 
     return (
