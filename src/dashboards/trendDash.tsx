@@ -1,11 +1,12 @@
 import { TrendChart } from "../charts/trendCharts/trendChart";
 import { useState } from "react";
 import { TrendDropDown } from "../charts/trendCharts/components/trendDropDown";
+import type { CostRecord } from "../types";
 
 export const TrendDash = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedAccount, setSelectedAccount] = useState<{ owner: string; account_name: string; cost: number; budget: number, date: string } | null>(null);
+    const [selectedAccount, setSelectedAccount] = useState<CostRecord | null>(null);
     return (
         <div className="w-full h-screen flex flex-col p-8">
             <div className="flex items-center justify-center">
@@ -16,7 +17,7 @@ export const TrendDash = () => {
                 {selectedAccount && selectedAccount.account_name !== "All Accounts" && (
                     <div className="flex justify-center mt-1">
                         <span className="text-sm">
-                            <strong>{selectedAccount.owner} - {selectedAccount.account_name}</strong> | Cost: ${selectedAccount.cost} | Budget: ${selectedAccount.budget}
+                            <strong>{selectedAccount.owner} - {selectedAccount.account_name}</strong> | {selectedAccount.service} | {selectedAccount.region} | {selectedAccount.date} | Cost: ${selectedAccount.cost} | Budget: ${selectedAccount.budget}
                         </span>
                     </div>
                 )}

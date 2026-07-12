@@ -28,7 +28,7 @@ export interface CostRecord {
   account_id: string;
   service: string;
   region: string;
-  owner: string | null;
-  cost: number | null;
+  owner: string;
+  cost: number;
   budget: number;
 }

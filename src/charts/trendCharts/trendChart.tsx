@@ -1,8 +1,9 @@
 import { Chart } from "react-chartjs-2";
 import { trendChartConfig } from "./config/trendChartConfig";
 import { allAccountsChartData } from "./chartData/trendChartData";
+import type { CostRecord } from "../../types";
 
-export const TrendChart = ({ selectedAccount }: { selectedAccount: { account_name: string; cost: number; budget: number } | null }) => {
+export const TrendChart = ({ selectedAccount }: { selectedAccount: CostRecord | null }) => {
 
     const chartData = selectedAccount ? {
         labels: [selectedAccount.account_name],
