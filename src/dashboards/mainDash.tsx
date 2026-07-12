@@ -112,19 +112,24 @@ export const MainDash = ({ onExpand }: { onExpand?: (label: string) => void }) =
             </div>
 
             <div className="flex gap-4 min-h-[600px]">
-                <div className="relative bg-white rounded-xl shadow-sm overflow-auto flex-1 min-w-0">
+                <div className="relative bg-white rounded-xl shadow-sm overflow-auto flex-1">
                     {onExpand && <ExpandButton onClick={() => onExpand('Cost Breakdowns')} />}
-                    <CostBreakdownsTable
-                        currentItems={currentItems}
-                        page={page}
-                        totalPages={totalPages}
-                        handlePageChange={setPage}
-                        title="Cost Breakdown"
-                    />
+                        <div className="-mt-5">
+                            <CostBreakdownsTable
+                                currentItems={currentItems}
+                                page={page}
+                                totalPages={totalPages}
+                                handlePageChange={setPage}
+                                title="Cost Breakdown"
+                            />
+
+                        </div>
                 </div>
-                <div className="relative bg-white rounded-xl shadow-sm overflow-auto flex-1 min-w-0">
+                <div className="relative bg-white rounded-xl shadow-sm overflow-auto flex-1">
                     {onExpand && <ExpandButton onClick={() => onExpand('Budget Alerts')} />}
-                    <BudgetAlerts />
+                    <div className="-mt-5">
+                        <BudgetAlerts />
+                    </div>
                 </div>
             </div>
 
