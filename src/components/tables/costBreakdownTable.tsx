@@ -89,22 +89,21 @@ export const CostBreakdownsTable = ({ currentItems, page, totalPages, handlePage
                             <h2 className="text-1xl text-white text-center">{selectedRow.account_name}</h2>
                         </div>
                         <div className="grid grid-flow-col grid-rows-3 gap-4">
-                        <div className="row-span-3 ... space-y-5">
-                            <p className="text-sm text-white"><span>Owner: </span>
-                                <span className="border border-gray-300 p-1 rounded">{ selectedRow.owner}</span>
-                            </p>
-                            <p className="text-sm text-white"><span>Service: </span>
-                                <span className="border border-gray-300 p-1 rounded">{selectedRow.service}</span>
-                            </p>
-                            <p className="text-sm text-white"><span>Region: </span>
-                                <span className="border border-gray-300 p-1 rounded">{selectedRow.region}</span>
-                            </p>
-                            <p className="text-sm text-white"><span>Cost: </span>
-                                <span className="border border-gray-300 p-1 rounded"   >{selectedRow.cost}</span>
-                            </p>
-                            <p className="text-sm text-white"><span>Budget: </span>
-                                <span className="border border-gray-300 p-1 rounded">{selectedRow.budget}</span>
-                            </p>
+                        <div className="row-span-3 grid grid-cols-[auto_1fr] gap-x-2 gap-y-3 items-center">
+                            <span className="text-sm text-white">Owner:</span>
+                            <span className="border border-gray-300 p-1 rounded text-black bg-white">{selectedRow.owner}</span>
+
+                            <span className="text-sm text-white">Service:</span>
+                            <span className="border border-gray-300 p-1 rounded text-black bg-white">{selectedRow.service}</span>
+
+                            <span className="text-sm text-white">Region:</span>
+                            <span className="border border-gray-300 p-1 rounded text-black bg-white">{selectedRow.region}</span>
+
+                            <span className="text-sm text-white">Cost:</span>
+                            <span className="border border-gray-300 p-1 rounded text-black bg-white">{selectedRow.cost}</span>
+
+                            <span className="text-sm text-white">Budget:</span>
+                            <span className="border border-gray-300 p-1 rounded text-black bg-white">{selectedRow.budget}</span>
                         </div>
                         <div className="col-span-2 ...">02</div>
                         <div className="col-span-2 row-span-2 ...">03</div>
