@@ -13,10 +13,6 @@ export const dateFilteredJson = costsData.map((data: any) => data.cost > data.bu
     owner: `${data.owner}`,
 } : null);
 
-// const validRows = costsData.filter(
-//     (row) => row.cost !== null && row.cost > 0 && typeof row.date === 'string' && row.date.length === 10
-// );
-
 const newValidRows = dateFilteredJson.filter(
     (row) => row != null
     
