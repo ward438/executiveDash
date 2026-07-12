@@ -1,4 +1,4 @@
-import { DropDownItem } from '../../../types';
+import type { DropDownItem } from '../../../types';
 
 export type { DropDownItem };
 
