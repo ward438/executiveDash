@@ -18,8 +18,9 @@ export const TrendDropDown = (
                     All Accounts
                 </button>
                 {dateFilteredJson.filter((data) => data != null).map((data: any, index: number) => (
-                    <button onClick={() => setSelectedAccount({ date: data.date, account_name: data.account_name, account_id: data.account_id, service: data.service, region: data.region, owner: data.owner, cost: data.cost, budget: data.budget })} key={index} className="text-left px-3 py-1.5 text-sm hover:bg-yellow-100 border-b last:border-b-0">
-                        {`${data.date} | ${data.account_name} | ${data.service} | ${data.owner} | cost: $${data.cost} | budget: $${data.budget}`}
+                    <button onClick={() => setSelectedAccount({ date: data.date, account_name: data.account_name, account_id: data.account_id, service: data.service, region: data.region, owner: data.owner, cost: data.cost, budget: data.budget })} key={index} className="text-left px-3 py-2 text-sm hover:bg-yellow-100 border-b last:border-b-0 flex flex-col gap-0.5">
+                        <span className="font-medium">{data.owner} — {data.account_name} ({data.service})</span>
+                        <span className="text-xs text-gray-500">{data.date} &nbsp;|&nbsp; Cost: ${data.cost.toLocaleString()} &nbsp;|&nbsp; Budget: ${data.budget.toLocaleString()}</span>
                     </button>
                 ))}
             </div>
