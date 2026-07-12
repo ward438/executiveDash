@@ -32,3 +32,5 @@ export interface CostRecord {
   cost: number;
   budget: number;
 }
+
+export type DropDownItem = Omit<CostRecord, 'account_id'> & { account_id?: string };

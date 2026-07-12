@@ -1,13 +1,6 @@
-export interface DropDownItem {
-    date: string;
-    account_name: string;
-    account_id?: string;
-    service: string;
-    region: string;
-    owner: string;
-    cost: number;
-    budget: number;
-}
+import { DropDownItem } from '../../../types';
+
+export type { DropDownItem };
 
 export const TrendDropDown = (
     { isOpen, setIsOpen, setSelectedAccount, items, label }: 
