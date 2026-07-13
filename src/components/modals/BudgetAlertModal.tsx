@@ -1,10 +1,5 @@
 import { useState } from "react";
-
-interface BudgetAlertModalProps {
-    row: any;
-    onClose: () => void;
-    onSave?: (alert: any) => void;
-}
+import type { BudgetAlertModalProps } from "../../types";
 
 export const BudgetAlertModal = ({ row, onClose, onSave }: BudgetAlertModalProps) => {
     const [threshold, setThreshold] = useState<number | "">("");

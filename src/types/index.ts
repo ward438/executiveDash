@@ -40,3 +40,9 @@ export interface DashState {
   totals: SummaryTotals;
   costs: CostRecord[];
 }
+
+export interface BudgetAlertModalProps {
+  row: any;
+  onClose: () => void;
+  onSave?: (alert: any) => void;
+}
