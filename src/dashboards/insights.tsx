@@ -19,11 +19,6 @@ for (const [service, qty] of Object.entries(serviceCounts)) {
     }
 }
 
-
-
-console.log("serviceCounts: ", serviceCounts);
-// console.log("topService: ", topService, "qty: ", topQty);
-
 export const Insights = () => {
     return (
         <div className="w-full h-full p-6">
@@ -36,9 +31,13 @@ export const Insights = () => {
                     red
                 />
                 <KPICard
-                    description={Object.entries(serviceCounts).map(([service, qty]) => (
-                        <div key={service}>{service}: {qty}</div>
-                    ))}
+                    description={
+                        <div className="grid grid-cols-2 gap-1">
+                            {Object.entries(serviceCounts).map(([service, qty]) => (
+                                <div key={service}>{service}: {qty}</div>
+                            ))}
+                        </div>
+                    }
                     label="Providers over budget"
                     value={`${Object.keys(serviceCounts).length}`}
                     red
