@@ -32,7 +32,7 @@ export interface CostRecord {
   cost: number;
   budget: number;
 }
-
+// copies CostRecord, ommits the account_id field, introdues it as an optional field. working around interface required fields
 export type DropDownItem = Omit<CostRecord, 'account_id'> & { account_id?: string };
 
 export interface DashState {
