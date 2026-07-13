@@ -19,21 +19,31 @@ for (const [service, qty] of Object.entries(serviceCounts)) {
     }
 }
 
+
+
 console.log("serviceCounts: ", serviceCounts);
-console.log("topService: ", topService, "qty: ", topQty);
+// console.log("topService: ", topService, "qty: ", topQty);
 
 export const Insights = () => {
     return (
         <div className="w-full h-full p-6">
             <h1 className="text-2xl font-bold text-center">Insights</h1>
-            <div className="flex w-1/4">
+            <div className="flex w-1/4 gap-4">
                 <KPICard
-                        label="Owners Over Budget"
-                        value="10"
-                        subtitle="John Doe, Jane Doe, Jim Doe"
-                        red
-                    />
-            </div>
+                    description={`Service: ${topService}`}
+                    label="Top service driving overspend"
+                    value={`Qty: ${topQty}`}
+                    red
+                />
+                <KPICard
+                    description={Object.entries(serviceCounts).map(([service, qty]) => (
+                        <div key={service}>{service}: {qty}</div>
+                    ))}
+                    label="Providers over budget"
+                    value={`${Object.keys(serviceCounts).length}`}
+                    red
+                />
         </div>
-    );
+    </div>
+);
 }
